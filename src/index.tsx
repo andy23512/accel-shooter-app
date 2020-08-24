@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { enable as enableDarkMode } from 'darkreader';
+
+enableDarkMode({});
 
 ReactDOM.render(
   <React.StrictMode>

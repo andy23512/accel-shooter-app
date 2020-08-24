@@ -3,18 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/clipboardy": "^2.0.1",
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "@types/node-fetch": "^2.5.7",
+    "@types/open": "^6.2.1",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/set-interval-async": "^1.0.0",
+    "clipboardy": "^2.3.0",
+    "darkreader": "^4.9.16",
+    "electron-devtools-installer": "^3.1.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-reload": "^1.5.0",
+    "inquirer": "^7.3.0",
+    "node-fetch": "^2.6.0",
+    "open": "^7.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "set-interval-async": "^1.0.33",
+    "typescript": "^3.9.6"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "postinstall": "electron-builder install-app-deps",
+    "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
+    "electron:build": "yarn build && tsc -p electron && electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +54,26 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
+    "autoprefixer": "^9.8.4",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.5",
+    "electron-builder": "^22.7.0",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.4.6",
+    "wait-on": "^5.0.1"
+  },
+  "homepage": ".",
+  "main": "build/electron/main.js",
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
